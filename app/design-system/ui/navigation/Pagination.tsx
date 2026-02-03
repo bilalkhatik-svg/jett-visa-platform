@@ -8,6 +8,7 @@ export interface PaginationProps {
   totalItems?: number;
   itemsPerPage?: number;
   showPageNumbers?: number;
+  itemsLabel?: string;
   className?: string;
 }
 
@@ -19,6 +20,7 @@ export default function Pagination({
   totalItems,
   itemsPerPage = 10,
   showPageNumbers = 5,
+  itemsLabel = "results",
   className = "",
 }: PaginationProps) {
   const handlePrevious = () => {
@@ -71,7 +73,7 @@ export default function Pagination({
             <span className="font-semibold">
               {startItem}-{endItem}
             </span>{" "}
-            of <span className="font-semibold">{totalItems}</span> results
+            of <span className="font-semibold">{totalItems}</span> {itemsLabel}
           </div>
         )}
         <div className="flex items-center gap-2">

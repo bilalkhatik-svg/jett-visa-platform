@@ -1,13 +1,13 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import CountryMaster from "./country-master";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Country Master - Visa Admin" },
+    { name: "description", content: "Manage country and continent data for visa processing" },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return <CountryMaster />;
 }
