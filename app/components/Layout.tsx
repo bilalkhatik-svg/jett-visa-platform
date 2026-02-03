@@ -91,6 +91,36 @@ const ChevronRightIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
   </svg>
 );
+const ShoppingCartIcon = () => (
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7h13M7 13l-4-8M16 21a1 1 0 100-2 1 1 0 000 2zM8 21a1 1 0 100-2 1 1 0 000 2z"
+    />
+  </svg>
+);
+const BarChartIcon = () => (
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M4 19V5M10 19V9M16 19v-6M22 19H2"
+    />
+  </svg>
+);
 
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
@@ -117,9 +147,46 @@ export default function Layout({ children }: LayoutProps) {
     }
   };
 
-  const sidebarSections: SidebarSection[] = [
+  const visaConfigSections: SidebarSection[] = [
     {
-      title: "NAVIGATION",
+      title: "CONFIGURATION",
+     items: [
+      {
+        id: "master-setup",
+        label: "Master Setup",
+        icon: <DatabaseIcon />,
+      },
+      {
+        id: "visa-products",
+        label: "Visa Products",
+        icon: <PassportIcon />,
+      },
+      {
+        id: "rules-engine",
+        label: "Rules Engine",
+        icon: <SettingsIcon />,
+      },
+    ],
+  },
+  {
+    title: "FULFILLMENT",
+    items: [
+      {
+        id: "orders",
+        label: "Orders",
+        icon: <ShoppingCartIcon />,
+      },
+      {
+        id: "analytics",
+        label: "Analytics",
+        icon: <BarChartIcon />,
+      },
+    ],
+    },
+  ];
+const Sections: SidebarSection[] = [
+    {
+      title: "CONFIGURATION",
       items: [
         {
           id: "organization",
@@ -154,7 +221,6 @@ export default function Layout({ children }: LayoutProps) {
       ],
     },
   ];
-
   const activeItemId = getActiveItemId();
 
   return (
@@ -184,7 +250,7 @@ export default function Layout({ children }: LayoutProps) {
         <aside className="w-64 bg-gray-50 h-[calc(100vh-4rem)] fixed left-0 top-16 overflow-y-auto border-r border-gray-200">
           <div className="py-4 pb-8">
             <nav className="space-y-6">
-              {sidebarSections.map((section, sectionIndex) => (
+              {Sections.map((section, sectionIndex) => (
                 <div key={sectionIndex}>
                   <h3 className="px-4 mb-2 text-xs font-medium text-gray-500 uppercase tracking-wider">
                     {section.title}
@@ -237,7 +303,7 @@ export default function Layout({ children }: LayoutProps) {
                                 return (
                                   <Link
                                     key={child.id}
-                                    to={child.id === "country-master" ? "/" : `/${child.id}`}
+                                    to={child.id === "country-master" ? "/country-master" : child.id === "visa-master" ? "/visa-master" : `/${child.id}`}
                                     className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-md text-left transition-colors ${
                                       isChildActive
                                         ? "bg-white text-gray-900 font-medium"

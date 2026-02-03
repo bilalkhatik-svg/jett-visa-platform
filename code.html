@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visa Admin Desktop Master Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary: #000000;
+            --sidebar-width: 260px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased text-slate-900 overflow-hidden">
+<div class="flex h-screen w-full">
+<aside class="w-[var(--sidebar-width)] h-full bg-white border-r border-slate-200 flex flex-col shrink-0">
+<div class="p-6 border-b border-slate-100 mb-4">
+<div class="flex items-center gap-3">
+<div class="bg-black p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">admin_panel_settings</span>
+</div>
+<h1 class="font-bold text-lg tracking-tight">Visa Admin</h1>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-8 overflow-y-auto">
+<div>
+<h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-3">Configuration</h3>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-50 text-black font-semibold" href="#">
+<span class="material-symbols-outlined text-xl">settings_applications</span>
+<span class="text-sm">Master Setup</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-50 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="text-sm">Visa Products</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-50 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">rule</span>
+<span class="text-sm">Rules Engine</span>
+</a>
+</li>
+</ul>
+</div>
+<div>
+<h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-3">Fulfillment</h3>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-50 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+<span class="text-sm">Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-50 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">analytics</span>
+<span class="text-sm">Analytics</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-100">
+<div class="flex items-center gap-3 px-2 py-2">
+<img alt="Profile" class="w-8 h-8 rounded-full border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_CzooSNGB2pWwRdIO-RPbACAFZ4j6PFh4ahY_QW7R4fUkZp_S9KSIK2mxtgxwbNn-vY18EKFrUIpHQ-PywSXpx-MJgf4Np1H1xZEdSq8xSfYMIEwZSyaxl_xSEmRbsiTM_fbFqytipTIXYgIKxtqlAtOso7eQIfk-EcJma-Ul-0FN5KpSpd1HJ33eTKtMqj3K3_m8a-shtGpbS8-qDEtTrtGIjQ4Uk_Uc4FYxo7zqJigPW8NCCVrpL1mDKN5dr0qfgchO4GQOEU8"/>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-semibold truncate">Alex Administrator</p>
+<p class="text-[10px] text-slate-400 truncate">System Manager</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-lg">logout</span>
+</div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-full bg-slate-50/50 overflow-hidden">
+<header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between">
+<div class="w-full max-w-xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-black text-xl">search</span>
+<input class="w-full pl-11 pr-4 py-2 bg-slate-100 border-transparent rounded-full text-sm focus:bg-white focus:ring-1 focus:ring-black focus:border-black transition-all" placeholder="Search for anything across the portal..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-8">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-600 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-600 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<img alt="Profile" class="w-9 h-9 rounded-full border border-slate-200 cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_CzooSNGB2pWwRdIO-RPbACAFZ4j6PFh4ahY_QW7R4fUkZp_S9KSIK2mxtgxwbNn-vY18EKFrUIpHQ-PywSXpx-MJgf4Np1H1xZEdSq8xSfYMIEwZSyaxl_xSEmRbsiTM_fbFqytipTIXYgIKxtqlAtOso7eQIfk-EcJma-Ul-0FN5KpSpd1HJ33eTKtMqj3K3_m8a-shtGpbS8-qDEtTrtGIjQ4Uk_Uc4FYxo7zqJigPW8NCCVrpL1mDKN5dr0qfgchO4GQOEU8"/>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-8">
+<div class="max-w-[1440px] mx-auto space-y-6">
+<div class="flex items-end justify-between">
+<div>
+<h2 class="text-3xl font-bold tracking-tight">Master Setup</h2>
+<p class="text-slate-500 mt-1">Configure and manage core system attributes for visa processing.</p>
+</div>
+<button class="bg-black text-white px-5 py-2.5 rounded-lg flex items-center gap-2 hover:bg-slate-800 transition-all font-medium">
+<span class="material-symbols-outlined text-xl">add</span>
+<span>Add New Attribute</span>
+</button>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="border-b border-slate-100 flex items-center px-4 justify-between bg-white">
+<div class="flex">
+<button class="px-6 py-4 border-b-2 border-black text-black font-semibold text-sm">Visa Purpose</button>
+<button class="px-6 py-4 border-b-2 border-transparent text-slate-400 hover:text-slate-600 font-medium text-sm transition-colors">Visa Mode</button>
+<button class="px-6 py-4 border-b-2 border-transparent text-slate-400 hover:text-slate-600 font-medium text-sm transition-colors">Entry Types</button>
+<button class="px-6 py-4 border-b-2 border-transparent text-slate-400 hover:text-slate-600 font-medium text-sm transition-colors">Validity</button>
+<button class="px-6 py-4 border-b-2 border-transparent text-slate-400 hover:text-slate-600 font-medium text-sm transition-colors">Duration</button>
+</div>
+<div class="flex items-center gap-3">
+<select class="text-sm border-slate-200 rounded-lg focus:ring-black focus:border-black py-1.5 pl-3 pr-8">
+<option>All Categories</option>
+<option>Travel</option>
+<option>Professional</option>
+</select>
+<button class="p-1.5 border border-slate-200 rounded-lg text-slate-400 hover:text-black">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 border-b border-slate-100">
+<th class="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Code</th>
+<th class="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Name</th>
+<th class="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Description</th>
+<th class="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Synonyms</th>
+<th class="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Category</th>
+<th class="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<span class="bg-slate-100 text-slate-700 text-[11px] font-bold px-2 py-1 rounded">TOUR</span>
+</td>
+<td class="px-6 py-4 font-semibold text-sm">Tourist</td>
+<td class="px-6 py-4 text-sm text-slate-500 max-w-xs truncate">For individuals traveling for leisure, sightseeing, or vacation purposes.</td>
+<td class="px-6 py-4 text-sm text-slate-500 italic">Tourism, Leisure, Holiday</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">Travel</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-black hover:bg-white rounded transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-600 hover:bg-white rounded transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<span class="bg-slate-100 text-slate-700 text-[11px] font-bold px-2 py-1 rounded">BUSI</span>
+</td>
+<td class="px-6 py-4 font-semibold text-sm">Business</td>
+<td class="px-6 py-4 text-sm text-slate-500 max-w-xs truncate">For business meetings, conferences, or corporate visits.</td>
+<td class="px-6 py-4 text-sm text-slate-500 italic">Corporate, Meeting, Expo</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700">Professional</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-black hover:bg-white rounded transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-600 hover:bg-white rounded transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<span class="bg-slate-100 text-slate-700 text-[11px] font-bold px-2 py-1 rounded">STUD</span>
+</td>
+<td class="px-6 py-4 font-semibold text-sm">Student</td>
+<td class="px-6 py-4 text-sm text-slate-500 max-w-xs truncate">Enrollment in educational institutions or academic programs.</td>
+<td class="px-6 py-4 text-sm text-slate-500 italic">Academic, Education</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-50 text-purple-700">Education</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-black hover:bg-white rounded transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-600 hover:bg-white rounded transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<span class="bg-slate-100 text-slate-700 text-[11px] font-bold px-2 py-1 rounded">MEDI</span>
+</td>
+<td class="px-6 py-4 font-semibold text-sm">Medical</td>
+<td class="px-6 py-4 text-sm text-slate-500 max-w-xs truncate">Treatment, surgery, or specialized medical consultations.</td>
+<td class="px-6 py-4 text-sm text-slate-500 italic">Patient, Healthcare</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 text-red-700">Travel</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-black hover:bg-white rounded transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-600 hover:bg-white rounded transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-slate-50/50 px-6 py-4 flex items-center justify-between border-t border-slate-100">
+<p class="text-xs text-slate-500">Showing <span class="font-bold text-black">1 to 4</span> of 24 results</p>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-400 disabled:opacity-50">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-black text-white font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 font-medium text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 font-medium text-xs">3</button>
+<span class="px-1 text-slate-400 text-xs">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

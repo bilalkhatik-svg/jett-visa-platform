@@ -1,5 +1,5 @@
 import type { Route } from "./+types/home";
-import CountryMaster from "./country-master";
+import CountryMaster from "../pages/visa/VisaMaster";
 
 export function meta({}: Route.MetaArgs) {
   return [
