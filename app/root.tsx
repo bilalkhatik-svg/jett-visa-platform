@@ -42,12 +42,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 import AppLayout from "./components/Layout";
+import ReduxProvider from "./components/ReduxProvider";
 
 export default function App() {
   return (
-    <AppLayout>
-      <Outlet />
-    </AppLayout>
+    <ReduxProvider>
+      <AppLayout>
+        <Outlet />
+      </AppLayout>
+    </ReduxProvider>
   );
 }
 

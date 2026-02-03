@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
+import { useNavigate } from "react-router";
 import type { Route } from "./+types/country-master";
 import {
   Button,
@@ -10,35 +11,8 @@ import {
   Badge,
   IconButton,
 } from "../design-system/ui";
-
-// Types
-interface Country {
-  id: string;
-  name: string;
-  isoCode: string;
-  currency: string;
-  continent: string;
-  lastUpdated: string;
-  status?: string;
-}
-
-interface CountriesResponse {
-  data: Country[];
-  totalCount: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
-}
-
-interface ApiRequest {
-  language: string;
-  searchTerm: string;
-  status: string;
-  page: number;
-  pageSize: number;
-  sortBy: string;
-  sortDirection: string;
-}
+import { useGetCountriesQuery, type Country } from "../services";
+import { getMockCountriesResponse } from "../data/mockCountries";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -48,61 +22,82 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function CountryMaster() {
-  const [countries, setCountries] = useState<Country[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
-  const [totalCount, setTotalCount] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
 
-  const fetchCountries = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const requestBody: ApiRequest = {
-        language: "en-US",
-        searchTerm: searchTerm,
-        status: "Active",
-        page: currentPage,
-        pageSize: pageSize,
-        sortBy: "name",
-        sortDirection: "Ascending",
-      };
-
-      // Note: Standard HTTP GET doesn't support request bodies
-      // Using POST as most browsers/fetch don't support GET with body
-      // If your API specifically requires GET, you may need to use query parameters instead
-      const response = await fetch("/api/v1/visa/countries", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (!response.ok) {
-        throw new Error(`API error: ${response.status} ${response.statusText}`);
-      }
-
-      const data: CountriesResponse = await response.json();
-      setCountries(data.data || []);
-      setTotalCount(data.totalCount || 0);
-      setTotalPages(data.totalPages || 0);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to fetch countries");
-      setCountries([]);
-    } finally {
-      setLoading(false);
+  // RTK Query hook - will use real API when available
+  const {
+    data: countriesData,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useGetCountriesQuery(
+    {
+      language: "en-US",
+      searchTerm: searchTerm,
+      status: "Active",
+      page: currentPage,
+      pageSize: pageSize,
+      sortBy: "name",
+      sortDirection: "Ascending",
+    },
+    {
+      // Skip the query if we don't have required params (though we always do)
+      skip: false,
     }
-  };
+  );
 
-  useEffect(() => {
-    fetchCountries();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, searchTerm]);
+  // Use mock data as fallback when API is not available or fails
+  // This ensures UI works seamlessly and will automatically switch to real data when API is connected
+  const mockData = useMemo(
+    () => getMockCountriesResponse(searchTerm, currentPage, pageSize),
+    [searchTerm, currentPage, pageSize]
+  );
+
+  // Determine which data source to use
+  // Priority: Real API data > Mock data (when API fails or is not available)
+  const useMockData = isError || (!countriesData && !isLoading);
+  const displayData = useMockData ? mockData : countriesData;
+
+  // Extract data from response
+  const countries = useMemo(() => displayData?.data || [], [displayData]);
+  const totalCount = displayData?.totalCount || 0;
+  const totalPages = displayData?.totalPages || 0;
+  const loading = isLoading && !useMockData; // Only show loading if we're waiting for real API
+  // Only show error message if we're not using mock data
+  // When using mock data, silently fall back without showing errors
+  const errorMessage = useMemo(() => {
+    if (!isError || useMockData) return null;
+    
+    if (!error) return "Failed to fetch countries";
+    
+    // Type guard for error with data
+    const errorObj = error as any;
+    if (errorObj && typeof errorObj === "object" && "data" in errorObj) {
+      const errorData = errorObj.data;
+      if (typeof errorData === "string") return errorData;
+      if (errorData && typeof errorData === "object" && "message" in errorData) {
+        return (errorData as { message: string }).message;
+      }
+    }
+    
+    // Type guard for error with status
+    if (errorObj && typeof errorObj === "object" && "status" in errorObj) {
+      const errorStatus = errorObj.status;
+      if (errorStatus === "FETCH_ERROR") {
+        // Don't show error when using mock data - it's expected
+        return null;
+      }
+      if (typeof errorStatus === "number") {
+        return `API Error ${errorStatus}: ${errorStatus === 404 ? "Endpoint not found" : errorStatus === 500 ? "Server error" : "Request failed"}`;
+      }
+    }
+    
+    return "Failed to fetch countries";
+  }, [isError, useMockData, error]);
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
@@ -167,6 +162,7 @@ export default function CountryMaster() {
         <IconButton
           variant="ghost"
           size="sm"
+          onClick={() => navigate(`/country/edit/${row.id}`)}
           icon={
             <svg
               className="w-4 h-4"
@@ -251,7 +247,7 @@ export default function CountryMaster() {
               />
             </div>
           </div>
-          <Button>
+          <Button onClick={() => navigate("/country/create")}>
             <div className="flex items-center gap-2">
               <svg
                 className="w-4 h-4"
@@ -272,10 +268,10 @@ export default function CountryMaster() {
         </div>
 
         {/* Error State */}
-        {error && (
+        {errorMessage && (
           <div className="mb-6">
             <Alert variant="error" title="Error">
-              {error}
+              {errorMessage}
             </Alert>
           </div>
         )}

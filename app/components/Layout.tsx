@@ -142,15 +142,16 @@ export default function Layout({ children }: LayoutProps) {
             { id: "document-master", label: "Document Master", icon: <DocumentIcon /> },
           ],
         },
-        {
-          id: "visa-catalog",
-          label: "Visa Catalog",
-          icon: <InfoIcon />,
-          children: [
-            { id: "list-sku", label: "List SKU", icon: <ListIcon /> },
-            { id: "sku-pricing", label: "SKU Pricing", icon: <DollarIcon /> },
-          ],
-        },
+            {
+              id: "visa-catalog",
+              label: "Visa Catalog",
+              icon: <InfoIcon />,
+              children: [
+                { id: "list-sku", label: "List SKU", icon: <ListIcon /> },
+                { id: "sku-pricing", label: "SKU Pricing", icon: <DollarIcon /> },
+                { id: "vendors", label: "Vendors", icon: <BuildingIcon /> },
+              ],
+            },
       ],
     },
   ];

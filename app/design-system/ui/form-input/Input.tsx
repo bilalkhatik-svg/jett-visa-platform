@@ -2,7 +2,7 @@ import React from "react";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label: string | React.ReactNode;
   error?: string;
   success?: string;
   helperText?: string;
@@ -41,7 +41,7 @@ export default function Input({
         htmlFor={inputId}
         className="text-sm font-medium text-gray-900"
       >
-        {label}
+        {typeof label === "string" ? label : label}
       </label>
       <div className="relative">
         {leftIcon && (

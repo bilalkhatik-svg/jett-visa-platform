@@ -39,25 +39,13 @@ export default function Alert({
       ),
     },
     warning: {
-      bg: "bg-yellow-100",
-      border: "border-yellow-500",
-      text: "text-yellow-700",
+      bg: "bg-orange-100",
+      border: "border-orange-500",
+      text: "text-orange-700",
       icon: (
-        <svg
-          className="w-5 h-5"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
-          <path
-            d="M12 8v4"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <circle cx="12" cy="16" r="1" fill="white" />
-        </svg>
+        <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center">
+          <span className="text-white text-xs font-bold">i</span>
+        </div>
       ),
     },
     error: {

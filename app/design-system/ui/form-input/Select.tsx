@@ -7,7 +7,7 @@ export interface SelectOption {
 
 export interface SelectProps
   extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "children"> {
-  label: string;
+  label: string | React.ReactNode;
   options: SelectOption[];
   error?: string;
   placeholder?: string;
@@ -46,7 +46,7 @@ export default function Select({
         htmlFor={selectId}
         className={`text-sm font-medium ${getLabelColor()}`}
       >
-        {label}
+        {typeof label === "string" ? label : label}
       </label>
       <select
         id={selectId}
